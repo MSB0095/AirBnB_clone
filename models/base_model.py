@@ -1,15 +1,22 @@
 #!/usr/bin/python3
+"""
+base_model - module
+provides a base class model for use in the project
+"""
 import uuid
 import datetime
+
 
 
 class BaseModel:
     """
     BaseModel class
+    provides a base class model
     """
-    def __init__(self) -> None:
+    def __init__(self, **kwargs) -> None:
         """
         init method
+        it runs at the creation of each instance
         """
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
@@ -19,6 +26,7 @@ class BaseModel:
     def __str__(self) -> str:
         """
         str method
+        returns a str of the instance
         """
         classname = self.__class__.__name__
         return "[{}] ({}) {}".format(classname, self.id, self.__dict__)
