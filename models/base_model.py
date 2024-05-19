@@ -12,7 +12,7 @@ class BaseModel:
     BaseModel class
     provides a base class model
     """
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         """
         init method
         it runs at the creation of each instance
@@ -20,6 +20,12 @@ class BaseModel:
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
+        if kwargs is not None:
+            for key, value in kwargs.items():
+                if key == "created_at" or key == "updated_at":
+                    self.key = datetime.datetime.fromisoformat(value)
+                else:
+                    self.key = value
         return
 
     def __str__(self) -> str:
