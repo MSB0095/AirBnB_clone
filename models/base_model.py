@@ -5,7 +5,6 @@ provides a base class model for use in the project
 """
 import uuid
 import datetime
-from models import storage
 
 class BaseModel:
     """
@@ -26,6 +25,7 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.datetime.now()
+            from models import storage
             storage.new(self)
 
     def __str__(self) -> str:
@@ -41,6 +41,7 @@ class BaseModel:
         save method - updates the updated_at date
         """
         self.updated_at = datetime.datetime.now()
+        from models import storage
         storage.save()
         return
 

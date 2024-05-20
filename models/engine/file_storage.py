@@ -17,7 +17,7 @@ class FileStorage:
         self.__objects:dict = {}
     
     def all(self):
-        return FileStorage.__objects
+        return self.__objects
     
     def new(self, obj):
         key = "{}.{}".format(type(obj).__name__, obj.id)
